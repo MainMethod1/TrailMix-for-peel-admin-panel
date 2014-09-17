@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Lab7DB" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="Lab7DBContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Trails" EntityType="Lab7DB.Trail" />
+    <EntitySet Name="Cities" EntityType="Lab7DB.City" />
+    <EntitySet Name="Events" EntityType="Lab7DB.Event" />
+    <AssociationSet Name="CityEvent" Association="Lab7DB.CityEvent">
+      <End Role="City" EntitySet="Cities" />
+      <End Role="Event" EntitySet="Events" />
+    </AssociationSet>
+    <EntitySet Name="TrailAccessPoints" EntityType="Lab7DB.TrailAccessPoint" />
+    <AssociationSet Name="TrailTrailAccessPoint" Association="Lab7DB.TrailTrailAccessPoint">
+      <End Role="Trail" EntitySet="Trails" />
+      <End Role="TrailAccessPoint" EntitySet="TrailAccessPoints" />
+    </AssociationSet>
+    <AssociationSet Name="TrailAccessPointCity" Association="Lab7DB.TrailAccessPointCity">
+      <End Role="TrailAccessPoint" EntitySet="TrailAccessPoints" />
+      <End Role="City" EntitySet="Cities" />
+    </AssociationSet>
+    <EntitySet Name="TrailUses" EntityType="Lab7DB.TrailUse" />
+    <AssociationSet Name="TrailUseTrail" Association="Lab7DB.TrailUseTrail">
+      <End Role="TrailUse" EntitySet="TrailUses" />
+      <End Role="Trail" EntitySet="Trails" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Trail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TrailName" Type="String" Nullable="true" />
+    <Property Name="TrailType" Type="String" Nullable="true" />
+    <Property Name="TrailDifficulty" Type="String" Nullable="true" />
+    <Property Name="TrailSurfaceType" Type="String" Nullable="true" />
+    <Property Name="TrailLength" Type="String" Nullable="true" />
+    <Property Name="parkings" Type="Boolean" Nullable="true" />
+    <Property Name="maintanance" Type="Boolean" Nullable="true" />
+    <Property Name="seasonHours" Type="DateTime" Nullable="true" />
+    <Property Name="washroooms" Type="Boolean" Nullable="true" />
+    <Property Name="hasStairs" Type="Boolean" Nullable="true" />
+    <Property Name="allowPets" Type="Boolean" Nullable="true" />
+    <Property Name="notes" Type="String" Nullable="true" />
+    <NavigationProperty Name="TrailAccessPoints" Relationship="Lab7DB.TrailTrailAccessPoint" FromRole="Trail" ToRole="TrailAccessPoint" />
+    <NavigationProperty Name="TrailUses" Relationship="Lab7DB.TrailUseTrail" FromRole="Trail" ToRole="TrailUse" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CityName" Type="String" Nullable="false" />
+    <NavigationProperty Name="Events" Relationship="Lab7DB.CityEvent" FromRole="City" ToRole="Event" />
+    <NavigationProperty Name="TrailAccessPoints" Relationship="Lab7DB.TrailAccessPointCity" FromRole="City" ToRole="TrailAccessPoint" />
+  </EntityType>
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="eventName" Type="String" Nullable="false" />
+    <Property Name="eventLocation" Type="String" Nullable="true" />
+    <Property Name="eventInfo" Type="String" Nullable="true" />
+    <Property Name="eventDateTime" Type="DateTime" Nullable="true" />
+    <NavigationProperty Name="Cities" Relationship="Lab7DB.CityEvent" FromRole="Event" ToRole="City" />
+  </EntityType>
+  <Association Name="CityEvent">
+    <End Type="Lab7DB.City" Role="City" Multiplicity="*" />
+    <End Type="Lab7DB.Event" Role="Event" Multiplicity="*" />
+  </Association>
+  <EntityType Name="TrailAccessPoint">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="longitude" Type="Double" Nullable="false" />
+    <Property Name="lattitude" Type="Double" Nullable="false" />
+    <Property Name="locationName" Type="String" Nullable="true" />
+    <NavigationProperty Name="Trail" Relationship="Lab7DB.TrailTrailAccessPoint" FromRole="TrailAccessPoint" ToRole="Trail" />
+    <Property Name="TrailId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="City" Relationship="Lab7DB.TrailAccessPointCity" FromRole="TrailAccessPoint" ToRole="City" />
+  </EntityType>
+  <Association Name="TrailTrailAccessPoint">
+    <End Type="Lab7DB.Trail" Role="Trail" Multiplicity="1" />
+    <End Type="Lab7DB.TrailAccessPoint" Role="TrailAccessPoint" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trail">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TrailAccessPoint">
+        <PropertyRef Name="TrailId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TrailAccessPointCity">
+    <End Type="Lab7DB.TrailAccessPoint" Role="TrailAccessPoint" Multiplicity="*" />
+    <End Type="Lab7DB.City" Role="City" Multiplicity="1" />
+  </Association>
+  <EntityType Name="TrailUse">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="trailAccessDate" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="Trail" Relationship="Lab7DB.TrailUseTrail" FromRole="TrailUse" ToRole="Trail" />
+  </EntityType>
+  <Association Name="TrailUseTrail">
+    <End Type="Lab7DB.TrailUse" Role="TrailUse" Multiplicity="*" />
+    <End Type="Lab7DB.Trail" Role="Trail" Multiplicity="1" />
+  </Association>
+</Schema>

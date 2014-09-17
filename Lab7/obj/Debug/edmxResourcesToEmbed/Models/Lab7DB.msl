@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Lab7DBStoreContainer" CdmEntityContainer="Lab7DBContainer">
+    <EntitySetMapping Name="Trails">
+      <EntityTypeMapping TypeName="IsTypeOf(Lab7DB.Trail)">
+        <MappingFragment StoreEntitySet="Trails">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TrailName" ColumnName="TrailName" />
+          <ScalarProperty Name="TrailType" ColumnName="TrailType" />
+          <ScalarProperty Name="TrailDifficulty" ColumnName="TrailDifficulty" />
+          <ScalarProperty Name="TrailSurfaceType" ColumnName="TrailSurfaceType" />
+          <ScalarProperty Name="TrailLength" ColumnName="TrailLength" />
+          <ScalarProperty Name="parkings" ColumnName="parkings" />
+          <ScalarProperty Name="maintanance" ColumnName="maintanance" />
+          <ScalarProperty Name="seasonHours" ColumnName="seasonHours" />
+          <ScalarProperty Name="washroooms" ColumnName="washroooms" />
+          <ScalarProperty Name="hasStairs" ColumnName="hasStairs" />
+          <ScalarProperty Name="allowPets" ColumnName="allowPets" />
+          <ScalarProperty Name="notes" ColumnName="notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cities">
+      <EntityTypeMapping TypeName="IsTypeOf(Lab7DB.City)">
+        <MappingFragment StoreEntitySet="Cities">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CityName" ColumnName="CityName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Events">
+      <EntityTypeMapping TypeName="IsTypeOf(Lab7DB.Event)">
+        <MappingFragment StoreEntitySet="Events">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="eventName" ColumnName="eventName" />
+          <ScalarProperty Name="eventLocation" ColumnName="eventLocation" />
+          <ScalarProperty Name="eventInfo" ColumnName="eventInfo" />
+          <ScalarProperty Name="eventDateTime" ColumnName="eventDateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrailAccessPoints">
+      <EntityTypeMapping TypeName="IsTypeOf(Lab7DB.TrailAccessPoint)">
+        <MappingFragment StoreEntitySet="TrailAccessPoints">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="longitude" ColumnName="longitude" />
+          <ScalarProperty Name="lattitude" ColumnName="lattitude" />
+          <ScalarProperty Name="locationName" ColumnName="locationName" />
+          <ScalarProperty Name="TrailId" ColumnName="TrailId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrailUses">
+      <EntityTypeMapping TypeName="IsTypeOf(Lab7DB.TrailUse)">
+        <MappingFragment StoreEntitySet="TrailUses">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="trailAccessDate" ColumnName="trailAccessDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="CityEvent" TypeName="Lab7DB.CityEvent" StoreEntitySet="CityEvent">
+      <EndProperty Name="City">
+        <ScalarProperty Name="Id" ColumnName="Cities_Id" />
+      </EndProperty>
+      <EndProperty Name="Event">
+        <ScalarProperty Name="Id" ColumnName="Events_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="TrailAccessPointCity" TypeName="Lab7DB.TrailAccessPointCity" StoreEntitySet="TrailAccessPoints">
+      <EndProperty Name="City">
+        <ScalarProperty Name="Id" ColumnName="City_Id" />
+      </EndProperty>
+      <EndProperty Name="TrailAccessPoint">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="TrailUseTrail" TypeName="Lab7DB.TrailUseTrail" StoreEntitySet="TrailUses">
+      <EndProperty Name="Trail">
+        <ScalarProperty Name="Id" ColumnName="Trail_Id" />
+      </EndProperty>
+      <EndProperty Name="TrailUse">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

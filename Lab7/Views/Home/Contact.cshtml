@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Support";
+}
+<h2>@ViewBag.Title.</h2>
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="sidebar-nav">
+            <div class="navbar navbar-default" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+                        <span class="sr-only"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+
+                    </button>
+                    <span class="visible-sm visible-xs navbar-brand">Options</span>
+                </div>
+                <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active">
+                        <li>@Html.ActionLink("Welcome", "Index", "Home")</li>
+                        <li><a href="TrailUsageReport.aspx">Generate New Report</a></li>
+                        <li>@Html.ActionLink("View Previously Generated Reports", "Index", "PreviousReports")</li>
+                        <li>@Html.ActionLink("View or Edit Events", "Index", "Event")</li>
+
+                        <li>@Html.ActionLink("Support", "Contact", "Home") </li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <h3>Submit a support request</h3>
+
+        <label id="subject">Subject</label>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" width="10"><br>
+        <label id="desc">Description</label> &nbsp;<textarea cols="75" rows="5"></textarea><br>
+
+        <button type="submit" class="btn-default">Submit</button>
+    </div>
+</div> 

@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="7d102492-32da-4ec6-83f5-6a79c62e266d" name="Parth@D4RK 2014-04-13 19:39:12" runUser="D4RK\Parth" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Default Test Settings" id="8d1d65f6-f3b0-42f9-9f1b-8b608c6f97c4">
+    <Deployment runDeploymentRoot="Parth_D4RK 2014-04-13 19_39_12">
+      <DeploymentItem filename="C:\Users\Parth\Documents\Visual Studio 2013\Projects\Lab7\Lab7\bin\Lab7.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+    <Properties />
+  </TestSettings>
+  <Times creation="2014-04-13T19:39:12.9554577-04:00" queuing="2014-04-13T19:39:13.7772087-04:00" start="2014-04-13T19:39:13.8562842-04:00" finish="2014-04-13T19:39:14.0664867-04:00" />
+  <ResultSummary outcome="Completed">
+    <Counters total="1" executed="1" passed="1" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <WebTest name="WebTest1" storage="c:\users\parth\documents\visual studio 2013\projects\lab7\trailmixadmintest\webtest1.webtest" id="4be3c347-6318-4d22-85b0-d9d60dfb63ec" persistedWebTest="77u/PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/Pg0KPFdlYlRlc3QgTmFtZT0iV2ViVGVzdDEiIElkPSI0YmUzYzM0Ny02MzE4LTRkMjItODViMC1kOWQ2MGRmYjYzZWMiIE93bmVyPSIiIFByaW9yaXR5PSIyMTQ3NDgzNjQ3IiBFbmFibGVkPSJUcnVlIiBDc3NQcm9qZWN0U3RydWN0dXJlPSIiIENzc0l0ZXJhdGlvbj0iIiBUaW1lb3V0PSIwIiBXb3JrSXRlbUlkcz0iIiB4bWxucz0iaHR0cDovL21pY3Jvc29mdC5jb20vc2NoZW1hcy9WaXN1YWxTdHVkaW8vVGVhbVRlc3QvMjAxMCIgRGVzY3JpcHRpb249IiIgQ3JlZGVudGlhbFVzZXJOYW1lPSIiIENyZWRlbnRpYWxQYXNzd29yZD0iIiBQcmVBdXRoZW50aWNhdGU9IlRydWUiIFByb3h5PSJkZWZhdWx0IiBTdG9wT25FcnJvcj0iRmFsc2UiIFJlY29yZGVkUmVzdWx0RmlsZT0iIiBSZXN1bHRzTG9jYWxlPSIiIC8+">
+      <Execution id="7819193f-4fd7-4fd7-9212-9124c30d3201" />
+    </WebTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry isTransparent="false" testId="4be3c347-6318-4d22-85b0-d9d60dfb63ec" executionId="7819193f-4fd7-4fd7-9212-9124c30d3201" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <WebTestResult executionId="7819193f-4fd7-4fd7-9212-9124c30d3201" testId="4be3c347-6318-4d22-85b0-d9d60dfb63ec" testName="WebTest1" computerName="D4RK" duration="00:00:00.0040102" startTime="2014-04-13T19:39:13.9343599-04:00" endTime="2014-04-13T19:39:14.0494699-04:00" testType="4e7599fa-5ecb-43e9-a887-cd63cf72d207" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7819193f-4fd7-4fd7-9212-9124c30d3201">
+      <ResultFiles>
+        <ResultFile path="WebTest1.webtestResult" />
+      </ResultFiles>
+      <TestSettings name="Default Test Settings" id="8d1d65f6-f3b0-42f9-9f1b-8b608c6f97c4">
+        <Deployment runDeploymentRoot="Parth_D4RK 2014-04-13 19_39_12">
+          <DeploymentItem filename="C:\Users\Parth\Documents\Visual Studio 2013\Projects\Lab7\Lab7\bin\Lab7.dll" />
+        </Deployment>
+        <Execution>
+          <TestTypeSpecific>
+            <WebTestRunConfiguration testTypeId="4e7599fa-5ecb-43e9-a887-cd63cf72d207">
+              <Browser name="Internet Explorer 9.0" MaxConnections="6">
+                <Headers>
+                  <Header name="User-Agent" value="Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)" />
+                  <Header name="Accept" value="*/*" />
+                  <Header name="Accept-Language" value="{{$IEAcceptLanguage}}" />
+                  <Header name="Accept-Encoding" value="GZIP" />
+                </Headers>
+              </Browser>
+            </WebTestRunConfiguration>
+          </TestTypeSpecific>
+          <AgentRule name="Execution Agents">
+          </AgentRule>
+        </Execution>
+        <Properties />
+      </TestSettings>
+      <WebTestResultFilePath>Parth_D4RK 2014-04-13 19_39_12\In\7819193f-4fd7-4fd7-9212-9124c30d3201\WebTest1.webtestResult</WebTestResultFilePath>
+    </WebTestResult>
+  </Results>
+</TestRun>

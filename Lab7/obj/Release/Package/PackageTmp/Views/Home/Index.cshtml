@@ -1,0 +1,89 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div >
+    <br>
+     <br>
+    <br>
+    @*<p><a href="http://walkandrollpeel.ca/" class="btn btn-primary btn-large">Learn more about TrailMix &raquo;</a></p>*@
+</div>
+@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+   <div class="row">
+    <div class="col-md-3">
+        <div class="sidebar-nav">
+            <div class="navbar navbar-default" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+                        <span class="sr-only"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+
+                    </button>
+                    <span class="visible-sm visible-xs navbar-brand">Welcome</span>
+                </div>
+                <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                <br>
+                    <ul class="nav nav-pills nav-stacked" >
+                       
+                        <li class="active">@Html.ActionLink("Welcome", "Index", "Home")</li>
+                        <li><a href="#">Generate New Report</a></li>
+                        <li>@Html.ActionLink("View Previously Generated Reports","Index", "PreviousReports")</li>
+                        <li>@Html.ActionLink("Manage Events", "Index", "Event")</li> 
+                        
+                        <li>@Html.ActionLink("Support", "Index", "Support")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <p class="lead"> Welcome to the admin portal of TrailMix </p>
+        <img src="~/Content/Images/fc-2.jpg" class="img-rounded img-responsive"  width="800" height="300">
+        <br>
+        <br>
+        
+        <p>
+            Welcome admin! Here on your dashboard you can create new reports or view previously generated reports
+            through the above menu.Through that menubar you can also update your profile information. If you need any kind of support with this website, please submit your request through Request Support option.
+             
+        </p>
+    </div>
+</div> 
+}
+else
+{
+   
+    @*<img src="~/Content/Images/fc-4.jpg" class="img-rounded img-responsive" width="960" height="300">*@
+       <div class="jumbotron">
+        <h1>Welcome</h1>
+        <p class="lead">Welcome to the admin panel of TrailMix</p>
+        <p><input id="loginLink" type="button" class="btn btn-lg btn-success" value="Login to continue" title="Login to continue" onclick="location.href='@Url.Action("Login", "Account")'"></p>
+      </div>
+    
+    <div class="row">
+        <div class="col-lg-4">
+          <h2>Generate Reports Easily</h2>
+           <p>Generate efficient reports based on accurate app usage data. You can also print or save the reports based on your preference </p>
+            <p><input id="loginLink" type="button" class="btn btn-primary" value="View details" onclick="location.href='@Url.Action("Login", "Account")'"></p>
+        </div>
+        <div class="col-lg-4">
+          <h2>Request Support</h2>
+          <p>Request instant support from developers for any bugs or problems you face on website</p>
+            <p><input id="loginLink" type="button" class="btn btn-primary" value="View details" onclick="location.href='@Url.Action("Login", "Account")'"></p>
+
+       </div>
+        <div class="col-lg-4">
+          <h2>Manage Your Profile</h2>
+          <p>Manage your profile through easy navigation side menubar</p>
+            <p><input id="loginLink" type="button" class="btn btn-primary" value="View details" onclick="location.href='@Url.Action("Login", "Account")'"></p>
+
+        </div>
+      </div>
+}
+
+

@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Lab7DBModelStoreContainer" CdmEntityContainer="Lab7DBEntities">
+    <EntitySetMapping Name="Cities">
+      <EntityTypeMapping TypeName="Lab7DBModel.City">
+        <MappingFragment StoreEntitySet="Cities">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CityName" ColumnName="CityName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Events">
+      <EntityTypeMapping TypeName="Lab7DBModel.Event">
+        <MappingFragment StoreEntitySet="Events">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="eventName" ColumnName="eventName" />
+          <ScalarProperty Name="eventLocation" ColumnName="eventLocation" />
+          <ScalarProperty Name="eventInfo" ColumnName="eventInfo" />
+          <ScalarProperty Name="eventDateTime" ColumnName="eventDateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrailAccessPoints">
+      <EntityTypeMapping TypeName="Lab7DBModel.TrailAccessPoint">
+        <MappingFragment StoreEntitySet="TrailAccessPoints">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="longitude" ColumnName="longitude" />
+          <ScalarProperty Name="lattitude" ColumnName="lattitude" />
+          <ScalarProperty Name="locationName" ColumnName="locationName" />
+          <ScalarProperty Name="TrailId" ColumnName="TrailId" />
+          <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Trails">
+      <EntityTypeMapping TypeName="Lab7DBModel.Trail">
+        <MappingFragment StoreEntitySet="Trails">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TrailName" ColumnName="TrailName" />
+          <ScalarProperty Name="TrailType" ColumnName="TrailType" />
+          <ScalarProperty Name="TrailDifficulty" ColumnName="TrailDifficulty" />
+          <ScalarProperty Name="TrailSurfaceType" ColumnName="TrailSurfaceType" />
+          <ScalarProperty Name="TrailLength" ColumnName="TrailLength" />
+          <ScalarProperty Name="parkings" ColumnName="parkings" />
+          <ScalarProperty Name="maintanance" ColumnName="maintanance" />
+          <ScalarProperty Name="seasonHours" ColumnName="seasonHours" />
+          <ScalarProperty Name="washroooms" ColumnName="washroooms" />
+          <ScalarProperty Name="hasStairs" ColumnName="hasStairs" />
+          <ScalarProperty Name="allowPets" ColumnName="allowPets" />
+          <ScalarProperty Name="notes" ColumnName="notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrailUses">
+      <EntityTypeMapping TypeName="Lab7DBModel.TrailUs">
+        <MappingFragment StoreEntitySet="TrailUses">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="trailAccessDate" ColumnName="trailAccessDate" />
+          <ScalarProperty Name="Trail_Id" ColumnName="Trail_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="CityEvent" TypeName="Lab7DBModel.CityEvent" StoreEntitySet="CityEvent">
+      <EndProperty Name="Cities">
+        <ScalarProperty Name="Id" ColumnName="Cities_Id" />
+      </EndProperty>
+      <EndProperty Name="Events">
+        <ScalarProperty Name="Id" ColumnName="Events_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

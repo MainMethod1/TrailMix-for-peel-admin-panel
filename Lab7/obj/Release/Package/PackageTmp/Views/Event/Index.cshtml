@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Lab7.Models.Event>
+
+@{
+    ViewBag.Title = "Events";
+}
+<br>
+<p class="lead">@ViewBag.Title</p>
+<div class="row">
+    <div class="col-md-3">
+        <div class="sidebar-nav">
+            <div class="navbar navbar-default" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+                        <span class="sr-only"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+
+                    </button>
+                    <span class="visible-sm visible-xs navbar-brand">Options</span>
+                </div>
+                <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                <br>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li >@Html.ActionLink("Welcome", "Index", "Home")</li>
+                        <li><a href="TrailUsageReport.aspx">Generate New Report</a></li>
+                        <li>@Html.ActionLink("View Previously Generated Reports", "Index", "PreviousReports")</li>
+                        <li class="active">@Html.ActionLink("Manage Events", "Index", "Event")</li>
+
+                        <li>@Html.ActionLink("Support", "Index", "Support")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <p>
+            @*@Html.ActionLink("Create New", "Create")*@ 
+            <input type="button" class="btn btn-success" value="Create New Event" title="Create New Event" onclick="location.href='@Url.Action("Create", "Event")'"> 
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    Event
+                </th>
+                <th>
+                   Location
+                </th>
+                <th>
+                   EventInfo
+                </th>
+                <th>
+                   Time
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.eventName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.eventLocation)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.eventInfo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.eventDateTime)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div> 
+

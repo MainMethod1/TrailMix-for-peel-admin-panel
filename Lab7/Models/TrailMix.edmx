@@ -1,0 +1,385 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Lab7DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cities">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CityName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CityEvent">
+          <Key>
+            <PropertyRef Name="Cities_Id" />
+            <PropertyRef Name="Events_Id" />
+          </Key>
+          <Property Name="Cities_Id" Type="int" Nullable="false" />
+          <Property Name="Events_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Events">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="eventName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="eventLocation" Type="nvarchar(max)" />
+          <Property Name="eventInfo" Type="nvarchar(max)" />
+          <Property Name="eventDateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TrailAccessPoints">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="longitude" Type="float" Nullable="false" />
+          <Property Name="lattitude" Type="float" Nullable="false" />
+          <Property Name="locationName" Type="nvarchar(max)" />
+          <Property Name="TrailId" Type="int" Nullable="false" />
+          <Property Name="City_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Trails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TrailName" Type="nvarchar(max)" />
+          <Property Name="TrailType" Type="nvarchar(max)" />
+          <Property Name="TrailDifficulty" Type="nvarchar(max)" />
+          <Property Name="TrailSurfaceType" Type="nvarchar(max)" />
+          <Property Name="TrailLength" Type="nvarchar(max)" />
+          <Property Name="parkings" Type="bit" />
+          <Property Name="maintanance" Type="bit" />
+          <Property Name="seasonHours" Type="nvarchar(max)" />
+          <Property Name="washroooms" Type="bit" />
+          <Property Name="hasStairs" Type="bit" />
+          <Property Name="allowPets" Type="bit" />
+          <Property Name="notes" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TrailUsages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="trailAccessDate" Type="datetime" Nullable="false" />
+          <Property Name="Trail_Id" Type="int" Nullable="false" />
+          <Property Name="activity" Type="varchar(max)" />
+        </EntityType>
+        <Association Name="FK_CityEvent_Cities">
+          <End Role="Cities" Type="Self.Cities" Multiplicity="1" />
+          <End Role="CityEvent" Type="Self.CityEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CityEvent">
+              <PropertyRef Name="Cities_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CityEvent_Events">
+          <End Role="Events" Type="Self.Events" Multiplicity="1" />
+          <End Role="CityEvent" Type="Self.CityEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CityEvent">
+              <PropertyRef Name="Events_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrailAccessPointCity">
+          <End Role="Cities" Type="Self.Cities" Multiplicity="1" />
+          <End Role="TrailAccessPoints" Type="Self.TrailAccessPoints" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrailAccessPoints">
+              <PropertyRef Name="City_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrailTrailAccessPoint">
+          <End Role="Trails" Type="Self.Trails" Multiplicity="1" />
+          <End Role="TrailAccessPoints" Type="Self.TrailAccessPoints" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trails">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrailAccessPoints">
+              <PropertyRef Name="TrailId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrailUseTrail">
+          <End Role="Trails" Type="Self.Trails" Multiplicity="1" />
+          <End Role="TrailUsages" Type="Self.TrailUsages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trails">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrailUsages">
+              <PropertyRef Name="Trail_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Lab7DBModelStoreContainer">
+          <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CityEvent" EntityType="Self.CityEvent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrailAccessPoints" EntityType="Self.TrailAccessPoints" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Trails" EntityType="Self.Trails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrailUsages" EntityType="Self.TrailUsages" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CityEvent_Cities" Association="Self.FK_CityEvent_Cities">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="CityEvent" EntitySet="CityEvent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CityEvent_Events" Association="Self.FK_CityEvent_Events">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="CityEvent" EntitySet="CityEvent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrailAccessPointCity" Association="Self.FK_TrailAccessPointCity">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="TrailAccessPoints" EntitySet="TrailAccessPoints" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrailTrailAccessPoint" Association="Self.FK_TrailTrailAccessPoint">
+            <End Role="Trails" EntitySet="Trails" />
+            <End Role="TrailAccessPoints" EntitySet="TrailAccessPoints" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrailUseTrail" Association="Self.FK_TrailUseTrail">
+            <End Role="Trails" EntitySet="Trails" />
+            <End Role="TrailUsages" EntitySet="TrailUsages" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Lab7DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CityName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TrailAccessPoints" Relationship="Self.FK_TrailAccessPointCity" FromRole="Cities" ToRole="TrailAccessPoints" />
+          <NavigationProperty Name="Events" Relationship="Self.CityEvent" FromRole="Cities" ToRole="Events" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="eventName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="eventLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="eventInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="eventDateTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Cities" Relationship="Self.CityEvent" FromRole="Events" ToRole="Cities" />
+        </EntityType>
+        <EntityType Name="TrailAccessPoint">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="longitude" Type="Double" Nullable="false" />
+          <Property Name="lattitude" Type="Double" Nullable="false" />
+          <Property Name="locationName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TrailId" Type="Int32" Nullable="false" />
+          <Property Name="City_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="City" Relationship="Self.FK_TrailAccessPointCity" FromRole="TrailAccessPoints" ToRole="Cities" />
+          <NavigationProperty Name="Trail" Relationship="Self.FK_TrailTrailAccessPoint" FromRole="TrailAccessPoints" ToRole="Trails" />
+        </EntityType>
+        <EntityType Name="Trail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TrailName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TrailType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TrailDifficulty" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TrailSurfaceType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TrailLength" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="parkings" Type="Boolean" />
+          <Property Name="maintanance" Type="Boolean" />
+          <Property Name="seasonHours" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="washroooms" Type="Boolean" />
+          <Property Name="hasStairs" Type="Boolean" />
+          <Property Name="allowPets" Type="Boolean" />
+          <Property Name="notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TrailAccessPoints" Relationship="Self.FK_TrailTrailAccessPoint" FromRole="Trails" ToRole="TrailAccessPoints" />
+          <NavigationProperty Name="TrailUsages" Relationship="Self.FK_TrailUseTrail" FromRole="Trails" ToRole="TrailUsage" />
+        </EntityType>
+        <EntityType Name="TrailUsage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="trailAccessDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Trail_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Trail" Relationship="Self.FK_TrailUseTrail" FromRole="TrailUsage" ToRole="Trails" />
+          <Property Name="activity" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_TrailAccessPointCity">
+          <End Role="Cities" Type="Self.City" Multiplicity="1" />
+          <End Role="TrailAccessPoints" Type="Self.TrailAccessPoint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrailAccessPoints">
+              <PropertyRef Name="City_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrailTrailAccessPoint">
+          <End Role="Trails" Type="Self.Trail" Multiplicity="1" />
+          <End Role="TrailAccessPoints" Type="Self.TrailAccessPoint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trails">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrailAccessPoints">
+              <PropertyRef Name="TrailId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrailUseTrail">
+          <End Role="Trails" Type="Self.Trail" Multiplicity="1" />
+          <End Role="TrailUsage" Type="Self.TrailUsage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trails">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrailUsage">
+              <PropertyRef Name="Trail_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CityEvent">
+          <End Role="Cities" Type="Self.City" Multiplicity="*" />
+          <End Role="Events" Type="Self.Event" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="Lab7DBEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cities" EntityType="Self.City" />
+          <EntitySet Name="Events" EntityType="Self.Event" />
+          <EntitySet Name="TrailAccessPoints" EntityType="Self.TrailAccessPoint" />
+          <EntitySet Name="Trails" EntityType="Self.Trail" />
+          <EntitySet Name="TrailUsages" EntityType="Self.TrailUsage" />
+          <AssociationSet Name="FK_TrailAccessPointCity" Association="Self.FK_TrailAccessPointCity">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="TrailAccessPoints" EntitySet="TrailAccessPoints" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrailTrailAccessPoint" Association="Self.FK_TrailTrailAccessPoint">
+            <End Role="Trails" EntitySet="Trails" />
+            <End Role="TrailAccessPoints" EntitySet="TrailAccessPoints" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrailUseTrail" Association="Self.FK_TrailUseTrail">
+            <End Role="Trails" EntitySet="Trails" />
+            <End Role="TrailUsage" EntitySet="TrailUsages" />
+          </AssociationSet>
+          <AssociationSet Name="CityEvent" Association="Self.CityEvent">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Lab7DBModelStoreContainer" CdmEntityContainer="Lab7DBEntities1">
+    <EntitySetMapping Name="Cities">
+      <EntityTypeMapping TypeName="IsTypeOf(Lab7DBModel.City)">
+        <MappingFragment StoreEntitySet="Cities">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CityName" ColumnName="CityName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Events">
+      <EntityTypeMapping TypeName="IsTypeOf(Lab7DBModel.Event)">
+        <MappingFragment StoreEntitySet="Events">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="eventName" ColumnName="eventName" />
+          <ScalarProperty Name="eventLocation" ColumnName="eventLocation" />
+          <ScalarProperty Name="eventInfo" ColumnName="eventInfo" />
+          <ScalarProperty Name="eventDateTime" ColumnName="eventDateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrailAccessPoints">
+      <EntityTypeMapping TypeName="IsTypeOf(Lab7DBModel.TrailAccessPoint)">
+        <MappingFragment StoreEntitySet="TrailAccessPoints">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="longitude" ColumnName="longitude" />
+          <ScalarProperty Name="lattitude" ColumnName="lattitude" />
+          <ScalarProperty Name="locationName" ColumnName="locationName" />
+          <ScalarProperty Name="TrailId" ColumnName="TrailId" />
+          <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Trails">
+      <EntityTypeMapping TypeName="IsTypeOf(Lab7DBModel.Trail)">
+        <MappingFragment StoreEntitySet="Trails">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TrailName" ColumnName="TrailName" />
+          <ScalarProperty Name="TrailType" ColumnName="TrailType" />
+          <ScalarProperty Name="TrailDifficulty" ColumnName="TrailDifficulty" />
+          <ScalarProperty Name="TrailSurfaceType" ColumnName="TrailSurfaceType" />
+          <ScalarProperty Name="TrailLength" ColumnName="TrailLength" />
+          <ScalarProperty Name="parkings" ColumnName="parkings" />
+          <ScalarProperty Name="maintanance" ColumnName="maintanance" />
+          <ScalarProperty Name="seasonHours" ColumnName="seasonHours" />
+          <ScalarProperty Name="washroooms" ColumnName="washroooms" />
+          <ScalarProperty Name="hasStairs" ColumnName="hasStairs" />
+          <ScalarProperty Name="allowPets" ColumnName="allowPets" />
+          <ScalarProperty Name="notes" ColumnName="notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrailUsages">
+      <EntityTypeMapping TypeName="IsTypeOf(Lab7DBModel.TrailUsage)">
+        <MappingFragment StoreEntitySet="TrailUsages">
+                <ScalarProperty Name="activity" ColumnName="activity" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="trailAccessDate" ColumnName="trailAccessDate" />
+          <ScalarProperty Name="Trail_Id" ColumnName="Trail_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="CityEvent" TypeName="Lab7DBModel.CityEvent" StoreEntitySet="CityEvent">
+      <EndProperty Name="Cities">
+        <ScalarProperty Name="Id" ColumnName="Cities_Id" />
+      </EndProperty>
+      <EndProperty Name="Events">
+        <ScalarProperty Name="Id" ColumnName="Events_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Lab7DB.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Lab7DBStoreContainer">
+    <EntitySet Name="Trails" EntityType="Lab7DB.Store.Trails" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Cities" EntityType="Lab7DB.Store.Cities" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Events" EntityType="Lab7DB.Store.Events" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TrailAccessPoints" EntityType="Lab7DB.Store.TrailAccessPoints" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TrailUses" EntityType="Lab7DB.Store.TrailUses" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CityEvent" EntityType="Lab7DB.Store.CityEvent" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_CityEvent_City" Association="Lab7DB.Store.FK_CityEvent_City">
+      <End Role="City" EntitySet="Cities" />
+      <End Role="CityEvent" EntitySet="CityEvent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CityEvent_Event" Association="Lab7DB.Store.FK_CityEvent_Event">
+      <End Role="Event" EntitySet="Events" />
+      <End Role="CityEvent" EntitySet="CityEvent" />
+    </AssociationSet>
+    <AssociationSet Name="TrailTrailAccessPoint" Association="Lab7DB.Store.TrailTrailAccessPoint">
+      <End Role="Trail" EntitySet="Trails" />
+      <End Role="TrailAccessPoint" EntitySet="TrailAccessPoints" />
+    </AssociationSet>
+    <AssociationSet Name="TrailAccessPointCity" Association="Lab7DB.Store.TrailAccessPointCity">
+      <End Role="TrailAccessPoint" EntitySet="TrailAccessPoints" />
+      <End Role="City" EntitySet="Cities" />
+    </AssociationSet>
+    <AssociationSet Name="TrailUseTrail" Association="Lab7DB.Store.TrailUseTrail">
+      <End Role="TrailUse" EntitySet="TrailUses" />
+      <End Role="Trail" EntitySet="Trails" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Trails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TrailName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="TrailType" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="TrailDifficulty" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="TrailSurfaceType" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="TrailLength" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="parkings" Type="bit" Nullable="true" />
+    <Property Name="maintanance" Type="bit" Nullable="true" />
+    <Property Name="seasonHours" Type="datetime" Nullable="true" />
+    <Property Name="washroooms" Type="bit" Nullable="true" />
+    <Property Name="hasStairs" Type="bit" Nullable="true" />
+    <Property Name="timesUsed" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="allowPets" Type="bit" Nullable="true" />
+    <Property Name="notes" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Cities">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CityName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Events">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="eventName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="eventLocation" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="eventInfo" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="eventDateTime" Type="datetime" Nullable="true" />
+  </EntityType>
+  <EntityType Name="TrailAccessPoints">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="longitude" Type="float" Nullable="false" />
+    <Property Name="lattitude" Type="float" Nullable="false" />
+    <Property Name="locationName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="TrailId" Type="int" Nullable="false" />
+    <Property Name="City_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TrailUses">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="trailAccessDate" Type="datetime" Nullable="false" />
+    <Property Name="Trail_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CityEvent">
+    <Key>
+      <PropertyRef Name="Cities_Id" />
+      <PropertyRef Name="Events_Id" />
+    </Key>
+    <Property Name="Cities_Id" Type="int" Nullable="false" />
+    <Property Name="Events_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="TrailTrailAccessPoint">
+    <End Role="Trail" Type="Lab7DB.Store.Trails" Multiplicity="1" />
+    <End Role="TrailAccessPoint" Type="Lab7DB.Store.TrailAccessPoints" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trail">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TrailAccessPoint">
+        <PropertyRef Name="TrailId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TrailAccessPointCity">
+    <End Role="TrailAccessPoint" Type="Lab7DB.Store.TrailAccessPoints" Multiplicity="*" />
+    <End Role="City" Type="Lab7DB.Store.Cities" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TrailAccessPoint">
+        <PropertyRef Name="City_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TrailUseTrail">
+    <End Role="TrailUse" Type="Lab7DB.Store.TrailUses" Multiplicity="*" />
+    <End Role="Trail" Type="Lab7DB.Store.Trails" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Trail">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TrailUse">
+        <PropertyRef Name="Trail_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CityEvent_City">
+    <End Role="City" Type="Lab7DB.Store.Cities" Multiplicity="1" />
+    <End Role="CityEvent" Type="Lab7DB.Store.CityEvent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CityEvent">
+        <PropertyRef Name="Cities_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CityEvent_Event">
+    <End Role="CityEvent" Type="Lab7DB.Store.CityEvent" Multiplicity="*" />
+    <End Role="Event" Type="Lab7DB.Store.Events" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Event">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CityEvent">
+        <PropertyRef Name="Events_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="Default Web Site" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="AppHostConfig" match="^Lab7$" />
+    <parameterEntry kind="ProviderPath" scope="contentPath" match="^C:\\Users\\Parth\\Documents\\Visual\ Studio\ 2013\\Projects\\Lab7\\Lab7\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\Parth\\Documents\\Visual\ Studio\ 2013\\Projects\\Lab7\\Lab7\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="IIS Web Application Pool Name" description="" value="ASP.NET v4.0" tags="">
+    <parameterEntry kind="DeploymentObjectAttribute" scope="application" match="application[@applicationPool='Clr4IntegratedAppPool']/@applicationPool" />
+  </parameter>
+  <parameter name="IisVirtualDirectoryPhysicalPath" description="" value="C:\Users\Parth\Documents\Visual Studio 2013\Projects\Lab7\Lab7_deploy" tags="PhysicalPath">
+    <parameterEntry kind="DestinationVirtualDirectory" scope=".*" match="^C:\\Users\\Parth\\Documents\\Visual\ Studio\ 2013\\Projects\\Lab7\\Lab7$" />
+  </parameter>
+  <parameter name="Add write permission to App_Data Folder" description="Add write permission to App_Data folder" value="Default Web Site/App_Data" tags="Hidden">
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\Parth\\Documents\\Visual\ Studio\ 2013\\Projects\\Lab7\\Lab7\\obj\\Release\\Package\\PackageTmp\\App_Data$" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="" value="Data Source=tcp:qfndifiu9o.database.windows.net,1433;Initial Catalog=finalCapstone_db;User Id=parth@qfndifiu9o;Password=shawshank" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Parth\\Documents\\Visual\ Studio\ 2013\\Projects\\Lab7\\Lab7\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="Lab7DBEntities1-Web.config Connection String" description="" value="metadata=res://*/Models.TrailMix.csdl|res://*/Models.TrailMix.ssdl|res://*/Models.TrailMix.msl;provider=System.Data.SqlClient;provider connection string=&quot;Data Source=tcp:qfndifiu9o.database.windows.net,1433;Initial Catalog=finalCapstone_db;User Id=parth@qfndifiu9o;Password=shawshank&quot;" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Parth\\Documents\\Visual\ Studio\ 2013\\Projects\\Lab7\\Lab7\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Lab7DBEntities1']/@connectionString" />
+  </parameter>
+</parameters>

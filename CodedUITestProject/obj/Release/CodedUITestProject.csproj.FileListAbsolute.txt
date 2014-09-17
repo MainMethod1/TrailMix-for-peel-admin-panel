@@ -1,0 +1,4 @@
+C:\Users\Parth\Documents\Visual Studio 2013\Projects\Lab7\CodedUITestProject\bin\Release\CodedUITestProject.dll
+C:\Users\Parth\Documents\Visual Studio 2013\Projects\Lab7\CodedUITestProject\bin\Release\CodedUITestProject.pdb
+C:\Users\Parth\Documents\Visual Studio 2013\Projects\Lab7\CodedUITestProject\obj\Release\CodedUITestProject.dll
+C:\Users\Parth\Documents\Visual Studio 2013\Projects\Lab7\CodedUITestProject\obj\Release\CodedUITestProject.pdb

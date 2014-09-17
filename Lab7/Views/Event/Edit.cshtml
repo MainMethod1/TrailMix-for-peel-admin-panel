@@ -1,0 +1,61 @@
+﻿@model Lab7.Models.Event
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Event</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.eventName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.eventName)
+                @Html.ValidationMessageFor(model => model.eventName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.eventLocation, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.eventLocation)
+                @Html.ValidationMessageFor(model => model.eventLocation)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.eventInfo, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.eventInfo)
+                @Html.ValidationMessageFor(model => model.eventInfo)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.eventDateTime, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.eventDateTime)
+                @Html.ValidationMessageFor(model => model.eventDateTime)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

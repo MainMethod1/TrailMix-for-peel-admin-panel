@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Lab7</name>
+    </assembly>
+    <members>
+        <member name="M:Lab7.Controllers.TrailAPIController.GetTrails">
+            <summary>
+            To get the information about all the trails use this method
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Lab7.Controllers.TrailAPIController.GetTrail(System.Int32)">
+            <summary>
+            To get the information about one perticular trail, use this method and pass the trailId of the trail that you're looking information for
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Lab7.TrailUsageReport.form1">
+            <summary>
+            form1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Lab7.TrailUsageReport.ReportViewer1">
+            <summary>
+            ReportViewer1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:Lab7.TrailUsageReport.ScriptManager1">
+            <summary>
+            ScriptManager1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+    </members>
+</doc>
